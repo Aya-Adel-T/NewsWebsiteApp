@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NewsAPI.Models;
 using NewsAPI.Repository;
+using NewsWebsiteAPI.Repository;
 
 namespace NewsAPI.Controllers
 {
@@ -16,8 +17,8 @@ namespace NewsAPI.Controllers
     //[Authorize(Roles = "Admin")]
     public class AuthorsController : ControllerBase
     {
-        public IRepository<Author> AuthorRepo { get; set; }
-        public AuthorsController(IRepository<Author> authorRepo)
+        public IAuthorservice AuthorRepo { get; set; }
+        public AuthorsController(IAuthorservice authorRepo)
         {
             AuthorRepo = authorRepo;
         }
@@ -78,6 +79,13 @@ namespace NewsAPI.Controllers
         {
             Author OrderData = AuthorRepo.Delete(id);
             return Ok(OrderData);
+        }
+
+        [HttpGet("AuthorsByName")]
+        public ActionResult<List<Author>> SortAuthorsByName()
+        {
+
+            return AuthorRepo.SortAuthorsByName();
         }
     }
 }

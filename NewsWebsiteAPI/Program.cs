@@ -6,6 +6,7 @@ using NewsWebsiteAPI.Data;
 using NewsAPI.Models;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using NewsWebsiteAPI.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,14 +24,21 @@ builder.Services.AddAuthentication(options =>
     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 });
 builder.Services.AddScoped<ILoginService, LoginService>();
-builder.Services.AddScoped<IRepository<Author>, AuthorService>();
-builder.Services.AddScoped<IRepository<News>, NewsService>();
+builder.Services.AddScoped<IAuthorservice, AuthorService>();
+builder.Services.AddScoped<INewsService, NewsService>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
+//CORS policy
+builder.Services.AddCors((setup) =>
+{
+    setup.AddPolicy("default", (options) =>
+    {
+        options.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin();
+    });
+});
 // Authentication scheme
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(option =>

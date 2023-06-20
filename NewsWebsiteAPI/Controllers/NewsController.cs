@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NewsAPI.Models;
 using NewsAPI.Repository;
+using NewsWebsiteAPI.Repository;
 
 namespace NewsAPI.Controllers
 {
@@ -16,8 +17,8 @@ namespace NewsAPI.Controllers
     [ApiController]
     public class NewsController : ControllerBase
     {
-        public IRepository<News> NewsRepo { get; set; }
-        public NewsController(IRepository<News> newsRepo)
+        public INewsService NewsRepo { get; set; }
+        public NewsController(INewsService newsRepo)
         {
             NewsRepo = newsRepo;
         }
@@ -51,7 +52,7 @@ namespace NewsAPI.Controllers
             return NotFound();
         }
 
-        // POST: api/Authors
+        // POST: api/News
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         //[Authorize(Roles = "Admin")]
@@ -74,7 +75,7 @@ namespace NewsAPI.Controllers
             return BadRequest();
         }
 
-        // DELETE: api/Authors/5
+        // DELETE: api/News/5
         [HttpDelete("{id}")]
         //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteNews(int id)
@@ -82,5 +83,27 @@ namespace NewsAPI.Controllers
             News OrderData = NewsRepo.Delete(id);
             return Ok(OrderData);
         }
+
+        //Upload Images
+        [HttpPost("uploadImage/{newsTitle}")]
+        public ActionResult UploadImage(IFormFile file, string newsTitle)
+        {
+            var Results = NewsRepo.UploadImage(file, newsTitle);
+            return Ok(Results);
+        }
+
+        [HttpGet("filterbyAuthor/{AuthorID}")]
+        public ActionResult<List<News>> FilterNewsByAuthor(int AuthorID)
+        {
+
+            return NewsRepo.FilterNewsByAuthor(AuthorID);
+        }
+        [HttpGet("newsByPublicationDate")]
+        public ActionResult<List<News>> SortnewsByPublicationDate()
+        {
+
+            return NewsRepo.SortNewsByPublicationDate();
+        }
+
     }
 }

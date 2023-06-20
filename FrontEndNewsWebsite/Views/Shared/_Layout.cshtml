@@ -12,18 +12,20 @@
     <link href="//fonts.googleapis.com/css2?family=Spartan:wght@300;400;600;700&display=swap" rel="stylesheet">
     @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
    <link rel="stylesheet" href="~/css/mycsstheme.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    @*<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />*@
     <link rel="stylesheet" href="~/FrontEndNewsWebsite.styles.css" asp-append-version="true" />
 </head>
 <body >
+
+
 
     <!--header-->
     <header id="site-header" class="fixed-top">
         <div class="container">
             <nav class="navbar navbar-expand-lg stroke px-0 pt-lg-0 " style="background-color:thistle">
-                <h1  >
+                <h1>
                     <a class="navbar-brand" asp-action="Index">
-                         News<span class="logo-sub"> Website </span>
+                        News<span class="logo-sub"> Website </span>
                     </a>
                 </h1>
                 <!-- if logo is image enable this
@@ -53,20 +55,20 @@
                         <li class="nav-item">
                             <a class="nav-link" href="about.html">About</a>
                         </li>
-                     
+
                         <li class="nav-item">
                             <a class="nav-link" href="contact.html">Contact US</a>
                         </li>
                     </ul>
                     <!--/search-right-->
-                    <div class="search-right">
+                  @*  <div class="search-right">
                         <a href="#search" title="search"><span class="fa fa-search" aria-hidden="true"></span></a>
-                    </div>
+                    </div>*@
                     <!--//search-right-->
                     <div class="top-quote mr-lg-3 mt-lg-0 mr-lg-4">
                         <a class="btn btn-style btn-white btn-primary" asp-area="" asp-controller="LoginFront" asp-action="Index">Login as an Admin</a>
 
-                     
+
                     </div>
                 </div>
                 <!-- toggle switch for light and dark theme -->
@@ -77,25 +79,99 @@
                                 <input type="checkbox" id="checkbox">
                                 <i class="gg-sun"></i>
                                 <i class="gg-moon"></i>
-                            
+
                             </label>
                         </div>
                     </nav>
                 </div>
-           
-           
+
+
                 <!-- //toggle switch for light and dark theme -->
             </nav>
         </div>
     </header>
     <!--/header-->
+    <!--/Banner-Start-->
+    <section class="bannerw3l-hnyv">
+        <div class="slider col-12">
+            <!-- slides -->
+            <div class="slider__slides">
+                <div class="slide s--active">
+                    <div class="slide__inner">
+                        <div class="slide__content">
+                            <h3 class="slide__heading">
+                                Top News
+                            </h3>
+                            <p class="slide__text">All news, moment by moment </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="slide__inner">
+                        <div class="slide__content">
+                            <h3 class="slide__heading">
+                                Best Stuff Ever
+                            </h3>
+                            <p class="slide__text">Work Around the clock </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="slide__inner">
+                        <div class="slide__content">
+                            <h3 class="slide__heading">Stock exchange</h3>
+                            <p class="slide__text">news about the stock exchange</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="slide__inner">
+                        <div class="slide__content">
+                            <h3 class="slide__heading">Stay tuned for latest news</h3>
+                            <p class="slide__text">news here and there</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide s--prev">
+                    <div class="slide__inner">
+                        <div class="slide__content">
+                            <h3 class="slide__heading">Breaking neeews</h3>
+                            <p class="slide__text">Stay with us to know about everything</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- slides end -->
+            <div class="slider__control">
+                <div class="slider__control-line"></div>
+                <div class="slider__control-line"></div>
+            </div>
+            <div class="slider__control slider__control--right m--right">
+                <div class="slider__control-line"></div>
+                <div class="slider__control-line"></div>
+            </div>
+        </div>
+        <div class="bannerw3l-layer"></div>
+    </section>
+    <!--//Banner-End-->
 
 
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
     </div>
+
+
+
+
+
+
+
+
+
 
     <!-- //testimonials -->
     <section class="w3l-footer-29-main">
@@ -190,9 +266,15 @@
         <!-- //move top -->
     </section>
 
+
+
+
+
+
+
     <!-- Template JavaScript -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/theme-change.js"></script>
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/theme-change.js"></script>
     <script id="rendered-js">
         (function () {
             var $slides = document.querySelectorAll('.slide');
@@ -246,8 +328,8 @@
         //# sourceURL=pen.js
     </script>
     <!--light-box-files -->
-    <script src="js/jquery-2.1.4.min.js"></script>
-    <script src="js/jquery.chocolat.js"></script>
+    <script src="assets/js/jquery-2.1.4.min.js"></script>
+    <script src="assets/js/jquery.chocolat.js"></script>
     <script type="text/javascript ">
         $(function () {
             $('.w3_agile_portfolio_grid a').Chocolat();
@@ -255,8 +337,8 @@
     </script>
     <!-- /js for portfolio lightbox -->
     <!-- stats number counter-->
-    <script src="js/jquery.waypoints.min.js"></script>
-    <script src="js/jquery.countup.js"></script>
+    <script src="assets/js/jquery.waypoints.min.js"></script>
+    <script src="assets/js/jquery.countup.js"></script>
     <script>
         $('.counter').countUp();
     </script>
@@ -331,7 +413,7 @@
     </script>
     <!-- //script for blog slider -->
 
-    <script src="js/owl.carousel.js"></script>
+    <script src="assets/js/owl.carousel.js"></script>
 
     <!-- disable body scroll which navbar is in active -->
     <script>
@@ -370,7 +452,30 @@
         });
     </script>
     <!--//MENU-JS-->
-    <script src="js/bootstrap.min.js"></script>
-    @RenderSection("Scripts", required: false)
+    <script src="assets/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
 </body>
 </html>

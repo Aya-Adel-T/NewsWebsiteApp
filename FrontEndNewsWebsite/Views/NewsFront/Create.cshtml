@@ -1,0 +1,66 @@
+﻿@model NewsAPI.Models.News
+
+@{
+    ViewData["Title"] = "Create";
+}
+<br />
+<br />
+<br />
+<br />
+
+<h1>Create</h1>
+
+<h4>News</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AuthorID" class="control-label"></label>
+                <select asp-for="AuthorID" class="form-control" asp-items="ViewBag.AuthorList"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="OurNews" class="control-label"></label>
+                <input asp-for="OurNews" class="form-control" />
+                <span asp-validation-for="OurNews" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewsImg" class="control-label"></label>
+                <input asp-for="NewsImg" class="form-control" />
+                <span asp-validation-for="NewsImg" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PublicationDate" class="control-label"></label>
+                <input asp-for="PublicationDate" class="form-control" />
+                <span asp-validation-for="PublicationDate" class="text-danger"></span>
+            </div>
+           @* <div class="form-group">
+                <label asp-for="CreationDate" class="control-label"></label>
+                <input asp-for="CreationDate" class="form-control" />
+                <span asp-validation-for="CreationDate" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="SecurityID" class="control-label"></label>
+                <select asp-for="SecurityID" class ="form-control" asp-items="ViewBag.SecurityID"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+@*
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+*@

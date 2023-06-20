@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace FrontEndNewsWebsite.Controllers
 {
-    public class AuthorsFront : Controller
+    public class NewsFront : Controller
     {
         APIClient _api = new APIClient();
         public async Task<IActionResult> Index()
@@ -14,8 +14,8 @@ namespace FrontEndNewsWebsite.Controllers
             HttpClient Client = _api.Initial();
             try
             {
-                var AuthorsList = await Client.GetFromJsonAsync<List<Author>>("api/Authors");
-                return View(AuthorsList);
+                var NewsList = await Client.GetFromJsonAsync<List<News>>("api/News");
+                return View(NewsList);
             }
             catch (Exception e)
             {
@@ -26,34 +26,32 @@ namespace FrontEndNewsWebsite.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            Author author = new Author();
+            News news = new News();
             HttpClient client = _api.Initial();
-            HttpResponseMessage res = await client.GetAsync($"api/Authors/{id}");
+            HttpResponseMessage res = await client.GetAsync($"api/News/{id}");
             if (res.IsSuccessStatusCode)
             {
                 string data = res.Content.ReadAsStringAsync().Result;
-                author = JsonConvert.DeserializeObject<Author>(data);
+                news = JsonConvert.DeserializeObject<News>(data);
             }
-            return View(author);
+            return View(news);
         }
         public async Task<IActionResult> Create(int id)
         {
             HttpClient client = _api.Initial();
+            //Authors drop down list
+            var AuthorList = await client.GetFromJsonAsync<List<Author>>("api/Authors");
+            SelectList AuthorsSelectList = new SelectList(AuthorList, "Id", "Name");
 
-            //Author SecurityID
-            //var authorr = await client.GetAsync($"api/Authors/{id}");
-            //var RestaurantsSelectList = (authorr, "Id", "Name");
-            //ViewBag.SecurityID = RestaurantsSelectList;
-
-
+            ViewBag.AuthorList = AuthorsSelectList;
             return View();
 
         }
         [HttpPost]
-        public async Task<IActionResult> Create(Author author)
+        public async Task<IActionResult> Create(News news)
         {
             HttpClient client = _api.Initial();
-            HttpResponseMessage res = await client.PostAsJsonAsync($"api/Authors", author);
+            HttpResponseMessage res = await client.PostAsJsonAsync($"api/News", news);
             if (res.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -62,40 +60,45 @@ namespace FrontEndNewsWebsite.Controllers
         }
         public async Task<ActionResult> Edit(int id)
         {
-            Author author = new Author();
+            News news = new News();
             HttpClient client = _api.Initial();
-            HttpResponseMessage res = await client.GetAsync($"api/Authors/{id}");
+            HttpResponseMessage res = await client.GetAsync($"api/News/{id}");
             if (res.IsSuccessStatusCode)
             {
                 string data = res.Content.ReadAsStringAsync().Result;
-                author = JsonConvert.DeserializeObject<Author>(data);
+                news = JsonConvert.DeserializeObject<News>(data);
             }
-            return View(author);
+            //Authors drop down list
+            var AuthorList = await client.GetFromJsonAsync<List<Author>>("api/Authors");
+            SelectList AuthorsSelectList = new SelectList(AuthorList, "Id", "Name");
+
+            ViewBag.AuthorList = AuthorsSelectList;
+            return View(news);
         }
         [HttpPost]
-        public async Task<ActionResult> Edit(int id, Author author)
+        public async Task<ActionResult> Edit(int id, News news)
         {
             HttpClient client = _api.Initial();
-            HttpResponseMessage res = await client.PutAsJsonAsync<Author>("api/Authors/{id}", author);
+            HttpResponseMessage res = await client.PutAsJsonAsync<News>("api/News/{id}", news);
 
             if (res.IsSuccessStatusCode)
             {
                 return RedirectToAction("index");
             }
 
-            return View(author);
+            return View(news);
         }
         public async Task<ActionResult> Delete(int? id)
         {
-            Author author = new Author();
+            News news = new News();
             HttpClient client = _api.Initial();
-            HttpResponseMessage res = await client.GetAsync($"api/Authors/{id}");
+            HttpResponseMessage res = await client.GetAsync($"api/News/{id}");
             if (res.IsSuccessStatusCode)
             {
                 string data = res.Content.ReadAsStringAsync().Result;
-                author = JsonConvert.DeserializeObject<Author>(data);
+                news = JsonConvert.DeserializeObject<News>(data);
             }
-            return View(author);
+            return View(news);
         }
 
         [HttpPost]
@@ -103,7 +106,7 @@ namespace FrontEndNewsWebsite.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             HttpClient Client = _api.Initial();
-            HttpResponseMessage res = await Client.DeleteAsync($"api/Authors/{id}");
+            HttpResponseMessage res = await Client.DeleteAsync($"api/News/{id}");
             if (res.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -111,14 +114,29 @@ namespace FrontEndNewsWebsite.Controllers
 
             return View();
         }
-        [HttpGet]
-        public async Task<IActionResult> SortAuthorsbyName()
+        [HttpPost]
+        public async Task<IActionResult> FilterByAuthor(int Author)
         {
             HttpClient Client = _api.Initial();
             try
             {
-                var AuthorsList = await Client.GetFromJsonAsync<List<Author>>($"api/Authors/AuthorsByName");
-                return View(AuthorsList);
+                var NewsList = await Client.GetFromJsonAsync<List<News>>($"api/News/filterbyAuthor/{Author}");
+                return View(NewsList);
+            }
+            catch (Exception e)
+            {
+                return View();
+            }
+
+        }
+        [HttpGet]
+        public async Task<IActionResult> SortByPublicationDate()
+        {
+            HttpClient Client = _api.Initial();
+            try
+            {
+                var NewsList = await Client.GetFromJsonAsync<List<News>>($"api/News/newsByPublicationDate");
+                return View(NewsList);
             }
             catch (Exception e)
             {

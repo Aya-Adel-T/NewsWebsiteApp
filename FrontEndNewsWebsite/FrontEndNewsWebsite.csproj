@@ -9,6 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\jss\**" />
+    <Compile Remove="wwwroot\lib\**" />
+    <Content Remove="wwwroot\jss\**" />
+    <Content Remove="wwwroot\lib\**" />
+    <EmbeddedResource Remove="wwwroot\jss\**" />
+    <EmbeddedResource Remove="wwwroot\lib\**" />
+    <None Remove="wwwroot\jss\**" />
+    <None Remove="wwwroot\lib\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\images\1.jpg" />
     <None Include="wwwroot\images\2.jpg" />
     <None Include="wwwroot\images\3.jpg" />
@@ -50,15 +61,6 @@
     <None Include="wwwroot\images\times-solid.svg" />
     <None Include="wwwroot\images\tw.png" />
     <None Include="wwwroot\images\woocomerce.png" />
-    <None Include="wwwroot\js\bootstrap.min.js" />
-    <None Include="wwwroot\js\jquery-2.1.4.min.js" />
-    <None Include="wwwroot\js\jquery-3.3.1.min.js" />
-    <None Include="wwwroot\js\jquery.chocolat.js" />
-    <None Include="wwwroot\js\jquery.countup.js" />
-    <None Include="wwwroot\js\jquery.magnific-popup.min.js" />
-    <None Include="wwwroot\js\jquery.waypoints.min.js" />
-    <None Include="wwwroot\js\owl.carousel.js" />
-    <None Include="wwwroot\js\theme-change.js" />
     <None Include="wwwroot\webfonts\fa-brands-400.eot" />
     <None Include="wwwroot\webfonts\fa-brands-400.svg" />
     <None Include="wwwroot\webfonts\fa-brands-400.ttf" />

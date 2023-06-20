@@ -25,4 +25,15 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Uploads\Product\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\Uploads\Common\NoImg.png">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

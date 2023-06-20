@@ -645,7 +645,6 @@ pre {
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
- 
 }
 
 @media (min-width: 576px) {
@@ -4505,7 +4504,6 @@ input[type="button"].btn-block {
 .nav-link {
     display: block;
     padding: 0.5rem 1rem;
- 
 }
 
     .nav-link:hover,
@@ -4521,7 +4519,6 @@ input[type="button"].btn-block {
 
 .nav-tabs {
     border-bottom: 1px solid #dee2e6;
-
 }
 
     .nav-tabs .nav-item {
@@ -4645,7 +4642,6 @@ input[type="button"].btn-block {
     display: inline-block;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
- 
 }
 
 .navbar-collapse {
@@ -18253,7 +18249,7 @@ nav ul li {
         color: inherit;
     }
 
-@media only screen and (max-width:1080px) {
+@media only screen and (max-width:1280px) {
     .slide__heading {
         margin-bottom: 16px;
         font-size: 45px;

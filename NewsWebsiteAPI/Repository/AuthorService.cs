@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NewsAPI.Models;
 using NewsWebsiteAPI.Data;
+using NewsWebsiteAPI.Repository;
 
 namespace NewsAPI.Repository
 {
-    public class AuthorService :BaseRepoService, IRepository<Author>
+    public class AuthorService :BaseRepoService, IAuthorservice
     {
         public AuthorService(IDbContextFactory<ElDbContext> context):base(context)
         {
@@ -56,6 +57,18 @@ namespace NewsAPI.Repository
             using var customContext = Context.CreateDbContext();
             customContext.Authors.Update(author);
             customContext.SaveChanges();
+        }
+
+        public List<Author> SortAuthorsByName()
+        {
+            List<Author> AuthorsList = new();
+            using (var customContext = Context.CreateDbContext())
+            {
+                AuthorsList = customContext.Authors.OrderBy(n => n.Name).ToList();
+            }
+
+            return AuthorsList;
+
         }
     }
 }
