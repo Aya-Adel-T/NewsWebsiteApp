@@ -20,10 +20,10 @@
     <!--header-->
     <header id="site-header" class="fixed-top">
         <div class="container">
-            <nav class="navbar navbar-expand-lg stroke px-0 pt-lg-0 " style="background-color:beige">
+            <nav class="navbar navbar-expand-lg stroke px-0 pt-lg-0 " style="background-color:thistle">
                 <h1  >
-                    <a class="navbar-brand" href="index.html">
-                         News<span class="logo-sub"> Website 
+                    <a class="navbar-brand" asp-action="Index">
+                         News<span class="logo-sub"> Website </span>
                     </a>
                 </h1>
                 <!-- if logo is image enable this
@@ -43,12 +43,17 @@
                             <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.html">About</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link " asp-area="" asp-controller="AuthorsFront" asp-action="Index">Authors</a>
 
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link " asp-area="" asp-controller="NewsFront" asp-action="Index">All News</a>
+
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">About</a>
+                        </li>
+                     
                         <li class="nav-item">
                             <a class="nav-link" href="contact.html">Contact US</a>
                         </li>
@@ -70,14 +75,15 @@
                         <div class="theme-switch-wrapper">
                             <label class="theme-switch" for="checkbox">
                                 <input type="checkbox" id="checkbox">
-                                <div class="mode-container">
-                                    <i class="gg-sun"></i>
-                                    <i class="gg-moon"></i>
-                                </div>
+                                <i class="gg-sun"></i>
+                                <i class="gg-moon"></i>
+                            
                             </label>
                         </div>
                     </nav>
                 </div>
+           
+           
                 <!-- //toggle switch for light and dark theme -->
             </nav>
         </div>
@@ -365,6 +371,6 @@
     </script>
     <!--//MENU-JS-->
     <script src="js/bootstrap.min.js"></script>
-
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

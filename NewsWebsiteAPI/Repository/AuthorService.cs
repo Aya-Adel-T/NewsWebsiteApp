@@ -28,6 +28,10 @@ namespace NewsAPI.Repository
             {
                 AuthorDetails = customContext.Authors.Find(id);
             }
+            using (var customContext = Context.CreateDbContext())
+            {
+                AuthorDetails.NewsList = customContext.News.Where(f => f.AuthorID == id).ToList();
+            }
             return AuthorDetails;
         }
 

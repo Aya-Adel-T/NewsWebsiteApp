@@ -1,0 +1,76 @@
+﻿@model NewsAPI.Models.Author
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div style=" margin-top:100px;>
+    <h4>Author</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+<br />
+<h4>Details About The Author</h4>
+<br />
+@if (Model.NewsList != null && Model.NewsList.Count() > 0)
+{
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Title
+                </th>
+                <th>
+                    News
+                </th>
+                <th>
+                    CreationDate
+                </th>
+                <th>
+                    PublicationDate
+                </th>
+              
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.NewsList)
+            {
+                
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OurNews)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreationDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PublicationDate)
+                    </td>
+                    <td>
+                        <a asp-controller="NewsFront" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-controller="NewsFront" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-controller="NewsFront" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
