@@ -13,13 +13,21 @@ namespace NewsAPI.Repository
         }
         public List<News> GetAll()
         {
-            List<News> OrdersList = new();
+            List<News> newsList = new();
             using (var customContext = Context.CreateDbContext())
             {
-                OrdersList = customContext.News.ToList();
+                newsList = customContext.News.ToList();
+            }
+            using (var customContext = Context.CreateDbContext())
+            {
+                foreach (var item in newsList)
+                {
+                    item.Author = customContext.Authors.First(r => r.Id == item.AuthorID);
+
+                }
             }
 
-            return OrdersList;
+            return newsList;
         }
 
         public News? GetDetails(int id)
@@ -28,6 +36,12 @@ namespace NewsAPI.Repository
             using (var customContext = Context.CreateDbContext())
             {
                 newsDetails = customContext.News.Find(id);
+            }
+            using (var customContext = Context.CreateDbContext())
+            {
+
+                newsDetails.Author = customContext.Authors.First(r => r.Id == newsDetails.AuthorID);
+
             }
             return newsDetails;
         }

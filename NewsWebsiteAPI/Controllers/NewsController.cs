@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -38,6 +40,7 @@ namespace NewsAPI.Controllers
         // PUT: api/Authors/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        //[Authorize(Roles = "Admin")] 
         public ActionResult PutAuthor(News news)
         {
             if (news.Id != 0 && news != null)
@@ -51,6 +54,7 @@ namespace NewsAPI.Controllers
         // POST: api/Authors
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        //[Authorize(Roles = "Admin")]
         public async Task<ActionResult<News>> PostNews(News news)
         {
             if (ModelState.IsValid)
@@ -72,6 +76,7 @@ namespace NewsAPI.Controllers
 
         // DELETE: api/Authors/5
         [HttpDelete("{id}")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteNews(int id)
         {
             News OrderData = NewsRepo.Delete(id);

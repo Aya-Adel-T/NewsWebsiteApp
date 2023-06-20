@@ -1,0 +1,97 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>9d67c857-fb05-46a7-898f-ca9bafee5cb4</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\1.jpg" />
+    <None Include="wwwroot\images\2.jpg" />
+    <None Include="wwwroot\images\3.jpg" />
+    <None Include="wwwroot\images\5.jpg" />
+    <None Include="wwwroot\images\6.jpg" />
+    <None Include="wwwroot\images\ab.jpg" />
+    <None Include="wwwroot\images\about1.jpg" />
+    <None Include="wwwroot\images\about2.jpg" />
+    <None Include="wwwroot\images\about3.jpg" />
+    <None Include="wwwroot\images\about4.jpg" />
+    <None Include="wwwroot\images\about5.jpg" />
+    <None Include="wwwroot\images\about6.jpg" />
+    <None Include="wwwroot\images\amazon.png" />
+    <None Include="wwwroot\images\arrow-left.png" />
+    <None Include="wwwroot\images\arrow-right.png" />
+    <None Include="wwwroot\images\banner1.jpg" />
+    <None Include="wwwroot\images\banner2.jpg" />
+    <None Include="wwwroot\images\banner3.jpg" />
+    <None Include="wwwroot\images\banner4.jpg" />
+    <None Include="wwwroot\images\banner5.jpg" />
+    <None Include="wwwroot\images\banner6.jpg" />
+    <None Include="wwwroot\images\close.png" />
+    <None Include="wwwroot\images\disney.png" />
+    <None Include="wwwroot\images\fb.png" />
+    <None Include="wwwroot\images\flipkart.png" />
+    <None Include="wwwroot\images\ins.png" />
+    <None Include="wwwroot\images\left.png" />
+    <None Include="wwwroot\images\li.png" />
+    <None Include="wwwroot\images\media-img.png" />
+    <None Include="wwwroot\images\right.png" />
+    <None Include="wwwroot\images\s1.jpg" />
+    <None Include="wwwroot\images\s2.jpg" />
+    <None Include="wwwroot\images\s3.jpg" />
+    <None Include="wwwroot\images\s4.jpg" />
+    <None Include="wwwroot\images\team1.jpg" />
+    <None Include="wwwroot\images\team2.jpg" />
+    <None Include="wwwroot\images\team3.jpg" />
+    <None Include="wwwroot\images\team4.jpg" />
+    <None Include="wwwroot\images\times-solid.svg" />
+    <None Include="wwwroot\images\tw.png" />
+    <None Include="wwwroot\images\woocomerce.png" />
+    <None Include="wwwroot\js\bootstrap.min.js" />
+    <None Include="wwwroot\js\jquery-2.1.4.min.js" />
+    <None Include="wwwroot\js\jquery-3.3.1.min.js" />
+    <None Include="wwwroot\js\jquery.chocolat.js" />
+    <None Include="wwwroot\js\jquery.countup.js" />
+    <None Include="wwwroot\js\jquery.magnific-popup.min.js" />
+    <None Include="wwwroot\js\jquery.waypoints.min.js" />
+    <None Include="wwwroot\js\owl.carousel.js" />
+    <None Include="wwwroot\js\theme-change.js" />
+    <None Include="wwwroot\webfonts\fa-brands-400.eot" />
+    <None Include="wwwroot\webfonts\fa-brands-400.svg" />
+    <None Include="wwwroot\webfonts\fa-brands-400.ttf" />
+    <None Include="wwwroot\webfonts\fa-brands-400.woff" />
+    <None Include="wwwroot\webfonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\webfonts\fa-regular-400.eot" />
+    <None Include="wwwroot\webfonts\fa-regular-400.svg" />
+    <None Include="wwwroot\webfonts\fa-regular-400.ttf" />
+    <None Include="wwwroot\webfonts\fa-regular-400.woff" />
+    <None Include="wwwroot\webfonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\webfonts\fa-solid-900.eot" />
+    <None Include="wwwroot\webfonts\fa-solid-900.svg" />
+    <None Include="wwwroot\webfonts\fa-solid-900.ttf" />
+    <None Include="wwwroot\webfonts\fa-solid-900.woff" />
+    <None Include="wwwroot\webfonts\fa-solid-900.woff2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.18.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.7" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NewsWebsiteAPI\NewsWebsiteAPI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="..\.dockerignore" Link="assets\.dockerignore" />
+  </ItemGroup>
+
+</Project>
