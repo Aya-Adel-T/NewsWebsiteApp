@@ -46,5 +46,17 @@ namespace FrontEndNewsWebsite.Controllers
             return View(news);
 
         }
+        public async Task<IActionResult> About()
+        {
+           
+                return View();
+            
+        }
+        public async Task<IActionResult> ContactUs()
+        {
+
+            return View();
+
+        }
     }
 }

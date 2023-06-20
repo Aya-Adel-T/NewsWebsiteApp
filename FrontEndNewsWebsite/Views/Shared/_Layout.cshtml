@@ -53,11 +53,12 @@
 
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.html">About</a>
+                            <a class="nav-link " asp-area="" asp-controller="Home" asp-action="About">About</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact US</a>
+                            <a class="nav-link " asp-area="" asp-controller="Home" asp-action="ContactUs">Contact US</a>
+                          
                         </li>
                     </ul>
                     <!--/search-right-->
@@ -91,73 +92,10 @@
         </div>
     </header>
     <!--/header-->
-    <!--/Banner-Start-->
-    <section class="bannerw3l-hnyv">
-        <div class="slider col-12">
-            <!-- slides -->
-            <div class="slider__slides">
-                <div class="slide s--active">
-                    <div class="slide__inner">
-                        <div class="slide__content">
-                            <h3 class="slide__heading">
-                                Top News
-                            </h3>
-                            <p class="slide__text">All news, moment by moment </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div class="slide__inner">
-                        <div class="slide__content">
-                            <h3 class="slide__heading">
-                                Best Stuff Ever
-                            </h3>
-                            <p class="slide__text">Work Around the clock </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div class="slide__inner">
-                        <div class="slide__content">
-                            <h3 class="slide__heading">Stock exchange</h3>
-                            <p class="slide__text">news about the stock exchange</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div class="slide__inner">
-                        <div class="slide__content">
-                            <h3 class="slide__heading">Stay tuned for latest news</h3>
-                            <p class="slide__text">news here and there</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide s--prev">
-                    <div class="slide__inner">
-                        <div class="slide__content">
-                            <h3 class="slide__heading">Breaking neeews</h3>
-                            <p class="slide__text">Stay with us to know about everything</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- slides end -->
-            <div class="slider__control">
-                <div class="slider__control-line"></div>
-                <div class="slider__control-line"></div>
-            </div>
-            <div class="slider__control slider__control--right m--right">
-                <div class="slider__control-line"></div>
-                <div class="slider__control-line"></div>
-            </div>
-        </div>
-        <div class="bannerw3l-layer"></div>
-    </section>
-    <!--//Banner-End-->
-
-
+    
+    @RenderBody()
     <div class="container body-content">
-        @RenderBody()
+     
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>

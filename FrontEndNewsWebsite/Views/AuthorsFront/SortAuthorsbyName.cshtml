@@ -20,11 +20,11 @@
                 @foreach (var item in Model)
                 {
 
-                    <div style="background-color:oldlace;" class="col-lg-5 passion-grid-item-info  mt-lg-3 mt-5 ml-lg-5">
+                    <div style="background-color:oldlace;" class="col-lg-8 passion-grid-item-info  mt-lg-3 mt-5 ml-lg-5">
                         <h2 class="title-subw3hny"> @Html.DisplayFor(modelItem => item.Name)</h2>
 
                         <a class="btn btn-primary btn-style mt-lg-5 mt-4" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                    
+                     
                         <br />
                         <hr />
                     </div>

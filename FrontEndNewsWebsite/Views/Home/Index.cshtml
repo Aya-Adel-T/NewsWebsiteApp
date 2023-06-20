@@ -5,7 +5,69 @@
     ViewData["Title"] = "Index";
 }
 
-
+<!--/Banner-Start-->
+<section class="bannerw3l-hnyv">
+    <div class="slider col-12">
+        <!-- slides -->
+        <div class="slider__slides">
+            <div class="slide s--active">
+                <div class="slide__inner">
+                    <div class="slide__content">
+                        <h3 class="slide__heading">
+                            Top News
+                        </h3>
+                        <p class="slide__text">All news, moment by moment </p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide__inner">
+                    <div class="slide__content">
+                        <h3 class="slide__heading">
+                            Best Stuff Ever
+                        </h3>
+                        <p class="slide__text">Work Around the clock </p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide__inner">
+                    <div class="slide__content">
+                        <h3 class="slide__heading">Stock exchange</h3>
+                        <p class="slide__text">news about the stock exchange</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide__inner">
+                    <div class="slide__content">
+                        <h3 class="slide__heading">Stay tuned for latest news</h3>
+                        <p class="slide__text">news here and there</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide s--prev">
+                <div class="slide__inner">
+                    <div class="slide__content">
+                        <h3 class="slide__heading">Breaking neeews</h3>
+                        <p class="slide__text">Stay with us to know about everything</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- slides end -->
+        <div class="slider__control">
+            <div class="slider__control-line"></div>
+            <div class="slider__control-line"></div>
+        </div>
+        <div class="slider__control slider__control--right m--right">
+            <div class="slider__control-line"></div>
+            <div class="slider__control-line"></div>
+        </div>
+    </div>
+    <div class="bannerw3l-layer"></div>
+</section>
+<!--//Banner-End-->
 
 <!--/about-home-->
 <section class="w3l-servicesblock py-5" id="about">
@@ -86,20 +148,20 @@
                 @foreach (var item in Model)
                 {
 
-                    <div style="background-color:oldlace;" class="col-lg-5 passion-grid-item-info  mt-lg-3 mt-5 ml-lg-5">
+                    <div style="background-color:oldlace;" class="col-lg-3 passion-grid-item-info  mt-lg-3 mt-5 ml-lg-5">
                         <h6 class="title-subw3hny"> @Html.DisplayFor(modelItem => item.Author.Name)</h6>
 
 
                         <h3 class="title-w3l mb-4">@Html.DisplayFor(modelItem => item.Title)</h3>
 
-                        <h2 class="mt-3 pr-lg-5">
+                        <h2 class="mt-3 pr-lg-3">
                             @Html.DisplayFor(modelItem => item.OurNews)
                         </h2>
                         <h6 class="title-subw3hny">
                             @Html.DisplayFor(modelItem => item.PublicationDate)
                         </h6>
-                        <a class="btn btn-primary btn-style mt-lg-5 mt-4" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                        <div class="col-lg-7 w3hny-passion-item">
+                        <a class="btn btn-primary btn-style mt-lg-4 mt-4" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        <div class="col-lg-4 w3hny-passion-item">
                             <div class="passion-grid-item-pic mt-lg-3">
                                 <img src="@Html.DisplayFor(modelItem => item.NewsImg)" alt="paayz" class="img-fluid radius-image">
 
@@ -109,7 +171,7 @@
                         <hr />
                     </div>
                 }
-
+             
                 @* <div class="col-lg-7 passion-grid-item-info pr-lg-5 mt-5 pt-lg-5">
                 <h6 class="title-subw3hny">Summer Collection</h6>
                 <h3 class="title-w3l mb-4">Women </br>Cosmetics 2021</h3>
@@ -131,7 +193,9 @@
     </div>
 </section>
 <!--//w3l-passion-mid-sec-->
-
+<br />
+<br />
+<br />
 <section class="w3l-stats-sec py-5">
     <div class="container py-md-3">
         <div class="row w3l-stats-section stats-con">
