@@ -78,13 +78,13 @@ namespace NewsAPI.Repository
             using (var customContext = Context.CreateDbContext())
             {
                 if (customContext.News.Where(r => r.Title == title).First() == null)
-                    throw new Exception("Store Name Not Found");
+                    throw new Exception("News Title Not Found");
             }
             if (Img != null)
             {
                 string ImageUrl = string.Empty;
-                //string HostUrl = "https://localhost:7150/";
-                string HostUrl = "file:///D:/News%20Website/TrialManulaJWT/NewsWebsiteApp/NewsWebsiteAPI/wwwroot/";
+                string HostUrl = "https://localhost:7150/";
+                //string HostUrl = "file:///D:/News%20Website/TrialManulaJWT/NewsWebsiteApp/NewsWebsiteAPI/wwwroot/";
 
                 string RawName = title.Replace(" ", "-");
                 string filePath = _environment.WebRootPath + "\\Uploads\\Product\\" + RawName;
