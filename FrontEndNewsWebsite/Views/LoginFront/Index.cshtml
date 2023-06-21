@@ -3,15 +3,20 @@
 @model TokenRequestModel
 @{
     ViewData["Title"] = "Index";
+
 }
-<h1>@ViewData["Title"]</h1>
 
 
 
-<div class="row">
+<br />
+<br />
+<br />
+<br />
+
+<div class="container" style=" display: flex;justify-content: center;">
     <div class="col-md-4">
         <section>
-            <form id="account" method="post">
+            <form id="account" method="post" validate="true">
                 <h2>Use a local account to log in.</h2>
                 <hr />
                 <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
@@ -34,26 +39,15 @@
     </div>
 
 </div>
+<br />
+<br />
+<br />
+@section Scripts{
+@*<script type="text/javascript" src="~/jquery-validate/jquery.validate.js"></script>*@
+    <script type="text/javascript" src="~/jquery/jquery.js"></script>
 
+<script type="text/javascript" src="~/jquery-validate/jquery.validate.min.js"></script>
+<script type="text/javascript"  src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
 
-@*<div style=" margin-top:100px; width:500px; display: flex;justify-content: center; ">
-<form>
-    <!-- Email input -->
-    <div class="form-outline mb-4">
-        <input type="email" id="form2Example1" class="form-control" />
-        <label class="form-label" for="form2Example1">Email address</label>
-    </div>
-    <!-- Password input -->
-    <div class="form-outline mb-4">
-        <input type="password" id="form2Example2" class="form-control" />
-        <label class="form-label" for="form2Example2">Password</label>
-    </div>
-    <!-- Submit button -->
-    <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
-
-   
-</form>
-
-
-</div>*@
-
+@*<script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>*@
+}

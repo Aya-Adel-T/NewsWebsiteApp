@@ -41,7 +41,7 @@ namespace NewsAPI.Controllers
         // PUT: api/Authors/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        //[Authorize(Roles = "Admin")] 
+        //[Authorize(Roles = "Admin")]
         public ActionResult PutAuthor(News news)
         {
             if (news.Id != 0 && news != null)
@@ -86,6 +86,7 @@ namespace NewsAPI.Controllers
 
         //Upload Images
         [HttpPost("uploadImage/{newsTitle}")]
+        //[Authorize(Roles = "Admin")]
         public ActionResult UploadImage(IFormFile file, string newsTitle)
         {
             var Results = NewsRepo.UploadImage(file, newsTitle);
@@ -99,6 +100,7 @@ namespace NewsAPI.Controllers
             return NewsRepo.FilterNewsByAuthor(AuthorID);
         }
         [HttpGet("newsByPublicationDate")]
+
         public ActionResult<List<News>> SortnewsByPublicationDate()
         {
 

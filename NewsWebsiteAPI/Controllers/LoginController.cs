@@ -25,7 +25,7 @@ namespace NewsAPI.Controllers
 
             if (!result.IsAuthenticated)
                 return BadRequest(result.Message);
-
+            HttpContext.Response.Headers.Add("Token", result.Token);
             return Ok(result);
         }
     }

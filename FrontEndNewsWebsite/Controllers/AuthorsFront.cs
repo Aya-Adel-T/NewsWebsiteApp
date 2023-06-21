@@ -1,8 +1,10 @@
-﻿using FeliveryAdminPanel.Helpers;
+﻿using Azure.Core;
+using FeliveryAdminPanel.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NewsAPI.Models;
 using Newtonsoft.Json;
+using System.Linq;
 
 namespace FrontEndNewsWebsite.Controllers
 {
@@ -26,16 +28,68 @@ namespace FrontEndNewsWebsite.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
+            var token = TempData["Token"];
+       
             Author author = new Author();
             HttpClient client = _api.Initial();
-            HttpResponseMessage res = await client.GetAsync($"api/Authors/{id}");
-            if (res.IsSuccessStatusCode)
+            //client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+            //var fyeh = client.DefaultRequestHeaders.GetValues("Content-Type");
+            try
             {
-                string data = res.Content.ReadAsStringAsync().Result;
-                author = JsonConvert.DeserializeObject<Author>(data);
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token.ToString());
+                //client.DefaultRequestHeaders.Add("Content-Type", "application/json" );
+                HttpResponseMessage res = await client.GetAsync($"api/Authors/{id}");
+                if (res.IsSuccessStatusCode)
+                {
+
+                    string data = res.Content.ReadAsStringAsync().Result;
+                    author = JsonConvert.DeserializeObject<Author>(data);
+                }
+                return View(author);
+            }
+            
+           
+          
+            catch
+            {
+                Redirect("Error");
+
             }
             return View(author);
         }
+
+
+
+        //[HttpGet]
+        //public async Task<IActionResult> Details(int id)
+        //{
+        //    var token = TempData["Token"];
+
+        //    Author author = new Author();
+        //    HttpClient client = _api.Initial();
+        //    try
+        //    {
+        //        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token.ToString());
+        //        HttpResponseMessage res = await client.GetAsync($"api/Authors/{id}");
+        //        if (res.IsSuccessStatusCode)
+        //        {
+
+        //            string data = res.Content.ReadAsStringAsync().Result;
+        //            author = JsonConvert.DeserializeObject<Author>(data);
+        //        }
+        //    }
+
+        //    catch
+        //    {
+        //        Redirect("Error");
+
+        //    }
+        //    return View(author);
+        //}
+
+
+
+
         public async Task<IActionResult> Create(int id)
         {
             HttpClient client = _api.Initial();
@@ -56,6 +110,7 @@ namespace FrontEndNewsWebsite.Controllers
             HttpResponseMessage res = await client.PostAsJsonAsync($"api/Authors", author);
             if (res.IsSuccessStatusCode)
             {
+
                 return RedirectToAction("Index");
             }
             return View();

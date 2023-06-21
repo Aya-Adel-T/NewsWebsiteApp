@@ -8,6 +8,7 @@ namespace FrontEndNewsWebsite.Controllers
 {
     public class NewsFront : Controller
     {
+       
         APIClient _api = new APIClient();
         public async Task<IActionResult> Index()
         {
@@ -33,6 +34,7 @@ namespace FrontEndNewsWebsite.Controllers
             {
                 string data = res.Content.ReadAsStringAsync().Result;
                 news = JsonConvert.DeserializeObject<News>(data);
+                
             }
             return View(news);
         }
@@ -50,11 +52,14 @@ namespace FrontEndNewsWebsite.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(News news)
         {
+
             HttpClient client = _api.Initial();
+            var token = TempData["Token"];
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token.ToString());
             HttpResponseMessage res = await client.PostAsJsonAsync($"api/News", news);
             if (res.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index");
+                return View("addNewsImage");
             }
             return View();
         }
@@ -62,6 +67,7 @@ namespace FrontEndNewsWebsite.Controllers
         {
             News news = new News();
             HttpClient client = _api.Initial();
+
             HttpResponseMessage res = await client.GetAsync($"api/News/{id}");
             if (res.IsSuccessStatusCode)
             {
@@ -79,6 +85,8 @@ namespace FrontEndNewsWebsite.Controllers
         public async Task<ActionResult> Edit(int id, News news)
         {
             HttpClient client = _api.Initial();
+            var token = TempData["Token"];
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token.ToString());
             HttpResponseMessage res = await client.PutAsJsonAsync<News>("api/News/{id}", news);
 
             if (res.IsSuccessStatusCode)
@@ -105,7 +113,10 @@ namespace FrontEndNewsWebsite.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
+            
             HttpClient Client = _api.Initial();
+            var token = TempData["Token"];
+            Client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token.ToString());
             HttpResponseMessage res = await Client.DeleteAsync($"api/News/{id}");
             if (res.IsSuccessStatusCode)
             {
@@ -143,6 +154,20 @@ namespace FrontEndNewsWebsite.Controllers
                 return View();
             }
 
+        }
+        
+            [HttpPost]
+        public async Task<IActionResult> addNewsImage(IFormFile Title)
+        {
+            HttpClient client = _api.Initial();
+            var token = TempData["Token"];
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token.ToString());
+            HttpResponseMessage res = await client.PostAsJsonAsync($"api/News/uploadImage", Title);
+            if (res.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
         }
     }
 }

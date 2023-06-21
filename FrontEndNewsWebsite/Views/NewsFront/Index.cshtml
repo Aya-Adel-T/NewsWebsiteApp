@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Views/_Layout.cshtml";
+
 }
 
 
@@ -9,10 +11,17 @@
 <br />
 <br />
 <br />
+<div class="container" style=" display: flex;justify-content: center;">
+
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+</div>
+<div class="container" style=" display: flex;justify-content: center;">
+
+
 <table class="table">
+
     <thead>
         <tr>
             <th>
@@ -63,3 +72,4 @@
 }
     </tbody>
 </table>
+</div>

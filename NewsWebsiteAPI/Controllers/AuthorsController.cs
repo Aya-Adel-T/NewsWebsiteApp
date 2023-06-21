@@ -25,6 +25,7 @@ namespace NewsAPI.Controllers
 
         // GET: api/Authors
         [HttpGet]
+        //[Authorize(Roles = "Admin")]
         public ActionResult<List<Author>> GetAuthors()
         {
 
@@ -33,6 +34,7 @@ namespace NewsAPI.Controllers
 
         // GET: api/Authors/5
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<Author>> GetById(int id)
         {
             return AuthorRepo.GetDetails(id);
@@ -41,6 +43,7 @@ namespace NewsAPI.Controllers
         // PUT: api/Authors/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        //[Authorize(Roles = "Admin")]
         public  ActionResult PutAuthor(Author author)
         {
             if (author.Id != 0 && author != null)
@@ -54,7 +57,7 @@ namespace NewsAPI.Controllers
         // POST: api/Authors
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        
+        //[Authorize(Roles = "Admin")]
         public async Task<ActionResult<Author>> PostAuthor(Author author)
         {
             if (ModelState.IsValid)
@@ -75,6 +78,7 @@ namespace NewsAPI.Controllers
 
         // DELETE: api/Authors/5
         [HttpDelete("{id}")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteAuthor(int id)
         {
             Author OrderData = AuthorRepo.Delete(id);
@@ -82,6 +86,7 @@ namespace NewsAPI.Controllers
         }
 
         [HttpGet("AuthorsByName")]
+        //[Authorize(Roles = "Admin")]
         public ActionResult<List<Author>> SortAuthorsByName()
         {
 

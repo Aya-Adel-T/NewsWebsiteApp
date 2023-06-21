@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "Create";
+    Layout = "~/Views/_Layout.cshtml";
+
 }
 <br />
 <br />
@@ -30,11 +32,11 @@
                 <input asp-for="OurNews" class="form-control" />
                 <span asp-validation-for="OurNews" class="text-danger"></span>
             </div>
-            <div class="form-group">
+        @*    <div class="form-group">
                 <label asp-for="NewsImg" class="control-label"></label>
-                <input asp-for="NewsImg" class="form-control" />
+                <input type="file" asp-for="NewsImg" class="form-control" />
                 <span asp-validation-for="NewsImg" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <label asp-for="PublicationDate" class="control-label"></label>
                 <input asp-for="PublicationDate" class="form-control" />
@@ -45,10 +47,10 @@
                 <input asp-for="CreationDate" class="form-control" />
                 <span asp-validation-for="CreationDate" class="text-danger"></span>
             </div>*@
-            <div class="form-group">
+          @*  <div class="form-group">
                 <label asp-for="SecurityID" class="control-label"></label>
                 <select asp-for="SecurityID" class ="form-control" asp-items="ViewBag.SecurityID"></select>
-            </div>
+            </div>*@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
