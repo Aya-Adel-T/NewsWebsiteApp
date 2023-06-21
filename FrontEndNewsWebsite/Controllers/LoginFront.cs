@@ -7,9 +7,11 @@ namespace FrontEndNewsWebsite.Controllers
     public class LoginFront : Controller
     {
         APIClient _api = new APIClient();
-        public async Task<IActionResult> Index(int id)
+        public async Task<IActionResult> Index()
         {
+            ViewData["Title"] = "Index";
             return View();
+
         }
         [HttpPost]
         public async Task<IActionResult> Index(TokenRequestModel admin)

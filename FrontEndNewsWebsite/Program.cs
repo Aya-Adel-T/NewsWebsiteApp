@@ -1,4 +1,12 @@
+//using Microsoft.AspNetCore.Identity;
+//using Microsoft.EntityFrameworkCore;
+//using NewsWebsiteAPI.Data;
 var builder = WebApplication.CreateBuilder(args);
+////var connectionString = builder.Configuration.GetConnectionString("ElDbContextConnection") ?? throw new InvalidOperationException("Connection string 'ElDbContextConnection' not found.");
+
+//builder.Services.AddDbContext<ElDbContext>(options => options.UseSqlServer("MyConn1"));
+
+//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ElDbContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -19,7 +27,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-
+//app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
