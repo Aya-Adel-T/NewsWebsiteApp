@@ -3,6 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NewsAPI.Models;
 using Newtonsoft.Json;
+using NuGet.Common;
+using System.Net.Http;
+using System.Net.Http.Formatting;
+using System.Net.Http.Headers;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 
 namespace FrontEndNewsWebsite.Controllers
 {
@@ -12,9 +18,11 @@ namespace FrontEndNewsWebsite.Controllers
         APIClient _api = new APIClient();
         public async Task<IActionResult> Index()
         {
+            var token = TempData["Token"];
             HttpClient Client = _api.Initial();
             try
             {
+              
                 var NewsList = await Client.GetFromJsonAsync<List<News>>("api/News");
                 return View(NewsList);
             }
@@ -27,8 +35,10 @@ namespace FrontEndNewsWebsite.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
+            var token = TempData["Token"];
             News news = new News();
             HttpClient client = _api.Initial();
+            //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token.ToString());
             HttpResponseMessage res = await client.GetAsync($"api/News/{id}");
             if (res.IsSuccessStatusCode)
             {
@@ -40,6 +50,7 @@ namespace FrontEndNewsWebsite.Controllers
         }
         public async Task<IActionResult> Create(int id)
         {
+            var token = TempData["Token"];
             HttpClient client = _api.Initial();
             //Authors drop down list
             var AuthorList = await client.GetFromJsonAsync<List<Author>>("api/Authors");
@@ -52,10 +63,10 @@ namespace FrontEndNewsWebsite.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(News news)
         {
+            var token = TempData["Token"];
 
             HttpClient client = _api.Initial();
-            var token = TempData["Token"];
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token.ToString());
+            //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token.ToString());
             HttpResponseMessage res = await client.PostAsJsonAsync($"api/News", news);
             if (res.IsSuccessStatusCode)
             {
@@ -85,13 +96,13 @@ namespace FrontEndNewsWebsite.Controllers
         public async Task<ActionResult> Edit(int id, News news)
         {
             HttpClient client = _api.Initial();
-            var token = TempData["Token"];
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token.ToString());
+            //var token = TempData["Token"];
+            //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token.ToString());
             HttpResponseMessage res = await client.PutAsJsonAsync<News>("api/News/{id}", news);
 
             if (res.IsSuccessStatusCode)
             {
-                return RedirectToAction("index");
+                return View("addNewsImage");
             }
 
             return View(news);
@@ -115,8 +126,8 @@ namespace FrontEndNewsWebsite.Controllers
         {
             
             HttpClient Client = _api.Initial();
-            var token = TempData["Token"];
-            Client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token.ToString());
+            //var token = TempData["Token"];
+            //Client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token.ToString());
             HttpResponseMessage res = await Client.DeleteAsync($"api/News/{id}");
             if (res.IsSuccessStatusCode)
             {
@@ -153,21 +164,32 @@ namespace FrontEndNewsWebsite.Controllers
             {
                 return View();
             }
-
         }
-        
-            [HttpPost]
-        public async Task<IActionResult> addNewsImage(IFormFile Title)
+
+        [HttpPost]
+        public async Task<IActionResult> addNewsImage(IFormFile file, string Title)
         {
             HttpClient client = _api.Initial();
-            var token = TempData["Token"];
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token.ToString());
-            HttpResponseMessage res = await client.PostAsJsonAsync($"api/News/uploadImage", Title);
-            if (res.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Index");
-            }
-            return View();
+ 
+                using (var content = new MultipartFormDataContent())
+                {
+                content.Add(new StreamContent(file.OpenReadStream())
+                {
+                    Headers =
+                     {
+                         ContentLength = file.Length,
+                         ContentType = new MediaTypeHeaderValue(file.ContentType)
+                     }
+                }, "file", file.FileName);
+
+                HttpResponseMessage res = await client.PostAsync($"api/News/uploadImage/{Title}", content);
+                    if (res.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    return View();
+                }
+       
         }
     }
 }

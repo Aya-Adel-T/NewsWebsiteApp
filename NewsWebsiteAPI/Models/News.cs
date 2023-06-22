@@ -8,10 +8,12 @@ namespace NewsAPI.Models
     {
         [Key]
         public int Id { get; set; }
+        [Required]
         public string Title { get; set; }
         [ForeignKey(nameof(Author))]
         public int AuthorID { get; set; }
         public virtual Author? Author { get; set; }
+        [Required]
         public string OurNews { get; set; }
         public string? NewsImg { get; set; }
         [DataType(DataType.DateTime)]

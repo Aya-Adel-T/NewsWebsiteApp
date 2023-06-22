@@ -9,7 +9,7 @@
 <br />
 <br />
 <br />
-
+<div class="container" >
 <h1>Edit</h1>
 
 <h4>News</h4>
@@ -34,21 +34,17 @@
                 <input asp-for="OurNews" class="form-control" />
                 <span asp-validation-for="OurNews" class="text-danger"></span>
             </div>
-            <div class="form-group">
+         @*   <div class="form-group">
                 <label asp-for="NewsImg" class="control-label"></label>
                 <input type="file" asp-for="NewsImg" class="form-control" />
                 <span asp-validation-for="NewsImg" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <label asp-for="PublicationDate" class="control-label"></label>
                 <input asp-for="PublicationDate" class="form-control" />
                 <span asp-validation-for="PublicationDate" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="CreationDate" class="control-label"></label>
-                <input asp-for="CreationDate" class="form-control" />
-                <span asp-validation-for="CreationDate" class="text-danger"></span>
-            </div>
+
             <div class="form-group">
              @*   <label asp-for="SecurityID" class="control-label"></label>*@
                 <input type="hidden" asp-for="SecurityID" class="form-control" />
@@ -68,3 +64,4 @@
 @*@section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }*@
+</div>

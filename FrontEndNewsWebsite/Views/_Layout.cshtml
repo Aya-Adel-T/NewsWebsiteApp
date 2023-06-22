@@ -23,9 +23,9 @@
     <!--header-->
     <header id="site-header" class="fixed-top">
         <div class="container">
-            <nav class="navbar navbar-expand-lg stroke px-0 pt-lg-0 " style="background-color:#2c3240">
+            <nav class="navbar navbar-expand-lg stroke px-0 pt-lg-0 " >
                 <h1>
-                    <a class="navbar-brand" asp-action="Index">
+                    <a class="navbar-brand" asp-controller="LoginFront" asp-action="Index">
                         News<span class="logo-sub"> Website </span>
                     </a>
                 </h1>
@@ -174,18 +174,21 @@
 
 
     <!-- Template JavaScript -->
-    <script src="assets/js/jquery-3.3.1.min.js"></script>
-    <script src="~/jquery-validate/jquery.validate.js"></script>
-    <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+    <script type="text/javascript" src="~/jquery/jquery.js"></script>
+    <script type="text/javascript" src="~/jquery-validate/jquery.validate.js"></script>
+    <script type="text/javascript" src="~/jquery-validate/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script defer src="~/js/jquery.validate"></script>
     <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/jquery-validate/jquery.validate.min.js"></script>
+
     <script src="assets/js/theme-change.js"></script>
     <script id="rendered-js">
         (function () {
             var $slides = document.querySelectorAll('.slide');
             var $controls = document.querySelectorAll('.slider__control');
             var numOfSlides = $slides.length;
-            var slidingAT = 1300; // sync this with scss variable
+            var slidingAT = 1300;
             var slidingBlocked = false;
 
             [].slice.call($slides).forEach(function ($el, index) {
@@ -358,30 +361,7 @@
     </script>
     <!--//MENU-JS-->
     <script src="assets/js/bootstrap.min.js"></script>
-
-
-
-    <script type="text/javascript" src="~/jquery/jquery.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
+    @RenderSection("Scripts",required: false)
 
 </body>
 </html>

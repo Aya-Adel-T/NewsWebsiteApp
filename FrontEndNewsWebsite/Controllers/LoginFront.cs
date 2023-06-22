@@ -38,24 +38,6 @@ namespace FrontEndNewsWebsite.Controllers
                 TempData["Token"] = session;
             }
 
-            //AuthenticationProperties options = new AuthenticationProperties();
-
-            //options.AllowRefresh = true;
-            //options.IsPersistent = true;
-            //options.ExpiresUtc = DateTime.UtcNow.AddSeconds(int.Parse(token.expires_in));
-
-            //var claims = new[]
-            //{
-            //    new Claim(ClaimTypes.Name, model.EmailAddress),
-            //        new Claim("AcessToken", string.Format("Bearer {0}", token.access_token)),
-            //    };
-
-            //var identity = new ClaimsIdentity(claims, "ApplicationCookie");
-
-            //Request.GetOwinContext().Authentication.SignIn(options, identity);
-
-
-
             if (res.IsSuccessStatusCode)
             {
                 //RedirectToAction("Index");

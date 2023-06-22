@@ -31,14 +31,15 @@ namespace NewsAPI.Controllers
             return NewsRepo.GetAll();
         }
 
-        // GET: api/Authors/5
+     
         [HttpGet("{id}")]
+        //[Authorize(Roles = "Admin")]
         public async Task<ActionResult<News>> GetById(int id)
         {
             return NewsRepo.GetDetails(id);
         }
 
-        // PUT: api/Authors/5
+    
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         //[Authorize(Roles = "Admin")]

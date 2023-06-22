@@ -27,7 +27,7 @@
                 </div>
                 <div class="form-floating mb-3">
                     <input asp-for="Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
-                    <label asp-for="Password" class="form-label">Password</label>
+                    <label  asp-for="Password" class="form-label">Password</label>
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
                 <div>
@@ -42,12 +42,11 @@
 <br />
 <br />
 <br />
-@section Scripts{
-@*<script type="text/javascript" src="~/jquery-validate/jquery.validate.js"></script>*@
-    <script type="text/javascript" src="~/jquery/jquery.js"></script>
-
+@*@section Scripts{
+ <script type="text/javascript" src="~/jquery/jquery.js"></script>
+<script type="text/javascript" src="~/jquery-validate/jquery.validate.js"></script>
 <script type="text/javascript" src="~/jquery-validate/jquery.validate.min.js"></script>
 <script type="text/javascript"  src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
-
-@*<script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>*@
-}
+<script defer src="~/js/jquery.validate"></script>
+<script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}*@

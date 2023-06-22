@@ -17595,7 +17595,7 @@ input:checked + .mode-container i.gg-moon {
     font-size: 34px;
     font-weight: 700;
     text-transform: capitalize;
-    color: #fff;
+    color: navajowhite;
     margin: 0;
 }
 
@@ -17641,7 +17641,7 @@ input:checked + .mode-container i.gg-moon {
     font-size: 16px;
     font-weight: 600;
     position: relative;
-    color: #fff;
+    color: navajowhite;
 }
 
 .navbar-expand-lg a.nav-link.donate.btn.btn-style {

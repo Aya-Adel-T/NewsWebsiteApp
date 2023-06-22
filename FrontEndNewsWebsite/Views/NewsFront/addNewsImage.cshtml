@@ -14,20 +14,24 @@
 
 <h4>Now add the image</h4>
 <hr />
-<div class="row">
+<div class="container" style=" display: flex;justify-content: center;">
     <div class="col-md-4">
-        <form asp-action="addNewsImage">
+        <form asp-action="addNewsImage" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
+                <input readonly asp-for="Title" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
        
             <div class="form-group">
                 <label asp-for="NewsImg" class="control-label"></label>
-                <input name="NewsImg" type="file" asp-for="NewsImg" class="form-control" />
-                <span asp-validation-for="NewsImg" class="text-danger"></span>
+                <input type="file" name="file" class="form-control" />
+               @* <input type="file" name="file" />
+                <span class="field-validation-error" id="spanfile"></span>*@
+
+               @* <input name="NewsImg" type="file" asp-for="NewsImg" class="form-control" />
+                <span asp-validation-for="NewsImg" class="text-danger"></span>*@
             </div>
       
             <div class="form-group">

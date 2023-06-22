@@ -10,12 +10,20 @@ namespace FrontEndNewsWebsite.Controllers
 {
     public class AuthorsFront : Controller
     {
+
+        //System.Object token= new Object();
+     
         APIClient _api = new APIClient();
+
         public async Task<IActionResult> Index()
         {
+           var  token = TempData["Token"];
+            //var s = token;
+            //ViewData["haga"] = s;
             HttpClient Client = _api.Initial();
             try
             {
+                //Client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token.ToString());
                 var AuthorsList = await Client.GetFromJsonAsync<List<Author>>("api/Authors");
                 return View(AuthorsList);
             }
@@ -28,16 +36,16 @@ namespace FrontEndNewsWebsite.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            var token = TempData["Token"];
-       
+            var token = ViewData["haga"];
+
+
             Author author = new Author();
             HttpClient client = _api.Initial();
-            //client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-            //var fyeh = client.DefaultRequestHeaders.GetValues("Content-Type");
+        
+
             try
-            {
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token.ToString());
-                //client.DefaultRequestHeaders.Add("Content-Type", "application/json" );
+            {           
+                //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token.ToString());
                 HttpResponseMessage res = await client.GetAsync($"api/Authors/{id}");
                 if (res.IsSuccessStatusCode)
                 {
@@ -92,7 +100,9 @@ namespace FrontEndNewsWebsite.Controllers
 
         public async Task<IActionResult> Create(int id)
         {
+            var token = ViewData["haga"];
             HttpClient client = _api.Initial();
+         
 
             //Author SecurityID
             //var authorr = await client.GetAsync($"api/Authors/{id}");
@@ -106,7 +116,10 @@ namespace FrontEndNewsWebsite.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Author author)
         {
+            var token = ViewData["haga"];
             HttpClient client = _api.Initial();
+           
+            //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token.ToString());
             HttpResponseMessage res = await client.PostAsJsonAsync($"api/Authors", author);
             if (res.IsSuccessStatusCode)
             {
@@ -117,8 +130,10 @@ namespace FrontEndNewsWebsite.Controllers
         }
         public async Task<ActionResult> Edit(int id)
         {
+            var token = ViewData["haga"];
             Author author = new Author();
             HttpClient client = _api.Initial();
+        
             HttpResponseMessage res = await client.GetAsync($"api/Authors/{id}");
             if (res.IsSuccessStatusCode)
             {
@@ -130,7 +145,9 @@ namespace FrontEndNewsWebsite.Controllers
         [HttpPost]
         public async Task<ActionResult> Edit(int id, Author author)
         {
+            var token = ViewData["haga"];
             HttpClient client = _api.Initial();
+            //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token.ToString());
             HttpResponseMessage res = await client.PutAsJsonAsync<Author>("api/Authors/{id}", author);
 
             if (res.IsSuccessStatusCode)
@@ -142,6 +159,7 @@ namespace FrontEndNewsWebsite.Controllers
         }
         public async Task<ActionResult> Delete(int? id)
         {
+            var token = ViewData["haga"];
             Author author = new Author();
             HttpClient client = _api.Initial();
             HttpResponseMessage res = await client.GetAsync($"api/Authors/{id}");
@@ -157,6 +175,7 @@ namespace FrontEndNewsWebsite.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
+            var token = ViewData["haga"];
             HttpClient Client = _api.Initial();
             HttpResponseMessage res = await Client.DeleteAsync($"api/Authors/{id}");
             if (res.IsSuccessStatusCode)

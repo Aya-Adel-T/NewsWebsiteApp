@@ -14,7 +14,6 @@ namespace NewsAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize(Roles = "Admin")]
     public class AuthorsController : ControllerBase
     {
         public IAuthorservice AuthorRepo { get; set; }
@@ -25,7 +24,7 @@ namespace NewsAPI.Controllers
 
         // GET: api/Authors
         [HttpGet]
-        //[Authorize(Roles = "Admin")]
+
         public ActionResult<List<Author>> GetAuthors()
         {
 
@@ -34,7 +33,7 @@ namespace NewsAPI.Controllers
 
         // GET: api/Authors/5
         [HttpGet("{id}")]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<ActionResult<Author>> GetById(int id)
         {
             return AuthorRepo.GetDetails(id);
