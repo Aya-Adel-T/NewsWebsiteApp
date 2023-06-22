@@ -1,17 +1,12 @@
 ﻿@model NewsAPI.Models.Author
-
 @{
     ViewData["Title"] = "Delete";
     Layout = "~/Views/_Layout.cshtml";
-
+    var authorized = ViewData["tokentalt"];
 }
-
-<br />
-<br />
-<br />
-<br />
-
-
+<br /><br /><br /><br />
+@*@if (authorized != null)
+{*@
 <div class="container" >
     <h3>Are you sure you want to delete this?</h3>
     <h4>Author</h4>
@@ -31,3 +26,8 @@
         <a asp-action="Index">Back to List</a>
     </form>
 </div>
+@*}
+else
+{
+    <h1> You are not allowed to be here </h1>
+}*@

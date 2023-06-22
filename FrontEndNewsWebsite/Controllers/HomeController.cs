@@ -10,7 +10,6 @@ namespace FrontEndNewsWebsite.Controllers
 {
     public class HomeController : Controller
     {
-
         APIClient _api = new APIClient();
         public async Task<IActionResult> Index()
         {
@@ -18,7 +17,6 @@ namespace FrontEndNewsWebsite.Controllers
             try
             {
                 var NewsList = await Client.GetFromJsonAsync<List<News>>("api/News");
-
                 //Authors drop down list
                 var AuthorList = await Client.GetFromJsonAsync<List<Author>>("api/Authors");
                 SelectList AuthorsSelectList = new SelectList(AuthorList, "Id", "Name");
@@ -54,9 +52,7 @@ namespace FrontEndNewsWebsite.Controllers
         }
         public async Task<IActionResult> ContactUs()
         {
-
             return View();
-
         }
     }
 }

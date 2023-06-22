@@ -1,5 +1,6 @@
 ﻿using FeliveryAdminPanel.Helpers;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using NewsAPI.Models;
 using NuGet.Common;
@@ -17,7 +18,6 @@ namespace FrontEndNewsWebsite.Controllers
         {
             ViewData["Title"] = "Index";
             return View();
-
         }
         [HttpPost]
         public async Task<IActionResult> Index(TokenRequestModel admin)
@@ -29,15 +29,20 @@ namespace FrontEndNewsWebsite.Controllers
             HttpHeaders headers = res.Headers;
             IEnumerable<string> values;
             if (headers.TryGetValues("Token", out values))
-            {
-                
+            {          
                 string session = values.First();
                 Cookie dfd = new Cookie();
                 dfd.Value = session;
-                dfd.Name = "ay7aga";
                 TempData["Token"] = session;
-            }
+                ViewData["tokenbag"] = session;
 
+                var identity = new ClaimsIdentity(new List<Claim>
+                 {
+                     new Claim("token", session, ClaimValueTypes.String)
+                 }, "Custom");
+                HttpContext.User = new ClaimsPrincipal(identity);
+                var t = ((ClaimsIdentity)HttpContext.User.Identity);
+            }
             if (res.IsSuccessStatusCode)
             {
                 //RedirectToAction("Index");

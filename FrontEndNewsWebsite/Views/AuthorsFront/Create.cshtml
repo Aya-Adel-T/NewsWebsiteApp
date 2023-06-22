@@ -1,18 +1,12 @@
 ﻿@model NewsAPI.Models.Author
-
 @{
     ViewData["Title"] = "Create";
-
     Layout = "~/Views/_Layout.cshtml";
+    var authorized = ViewData["tokentalt"];
 }
-
-<br />
-<br />
-<br />
-<br />
-<br />
-
-
+<br /><br /><br /><br /><br />
+@*@if (authorized != null)
+{*@
 <hr />
 <div class="container" style=" display: flex;justify-content: center;">
     <h4>Create new author</h4>
@@ -29,10 +23,6 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                @*<label asp-for="SecurityID" class="control-label"></label>*@
-                @*<label typeof="hidden" asp-for="SecurityID" class="form-control" asp-items="ViewBag.SecurityID"></label>*@
-            </div>
-            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
@@ -42,7 +32,8 @@
   <div class="container" style=" display: flex;justify-content: center;"> 
     <a asp-action="Index">Back to List</a>
     </div>
-@*@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
-*@
+@*}
+else
+{
+<h1> You are not allowed to be here </h1>
+}*@

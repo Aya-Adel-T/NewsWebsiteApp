@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using NewsAPI.Models;
 using Newtonsoft.Json;
 using System.Linq;
+using System.Security.Claims;
 
 namespace FrontEndNewsWebsite.Controllers
 {
@@ -18,12 +19,14 @@ namespace FrontEndNewsWebsite.Controllers
         public async Task<IActionResult> Index()
         {
            var  token = TempData["Token"];
-            //var s = token;
-            //ViewData["haga"] = s;
+            var token1 = TempData["tokentani"];
+            ViewData["tokentalt"] = token1;
             HttpClient Client = _api.Initial();
             try
             {
-                //Client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token.ToString());
+                //var d = HttpContext.User;
+                //var t = ((ClaimsIdentity)HttpContext.User.Identity);
+                //Client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer ", token.ToString());
                 var AuthorsList = await Client.GetFromJsonAsync<List<Author>>("api/Authors");
                 return View(AuthorsList);
             }
@@ -36,16 +39,13 @@ namespace FrontEndNewsWebsite.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            var token = ViewData["haga"];
-
-
+          var token1 = TempData["tokentani"];
             Author author = new Author();
             HttpClient client = _api.Initial();
-        
-
             try
-            {           
-                //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token.ToString());
+            {
+                var t = ((ClaimsIdentity)HttpContext.User.Identity);
+ 
                 HttpResponseMessage res = await client.GetAsync($"api/Authors/{id}");
                 if (res.IsSuccessStatusCode)
                 {
@@ -66,60 +66,17 @@ namespace FrontEndNewsWebsite.Controllers
             return View(author);
         }
 
-
-
-        //[HttpGet]
-        //public async Task<IActionResult> Details(int id)
-        //{
-        //    var token = TempData["Token"];
-
-        //    Author author = new Author();
-        //    HttpClient client = _api.Initial();
-        //    try
-        //    {
-        //        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token.ToString());
-        //        HttpResponseMessage res = await client.GetAsync($"api/Authors/{id}");
-        //        if (res.IsSuccessStatusCode)
-        //        {
-
-        //            string data = res.Content.ReadAsStringAsync().Result;
-        //            author = JsonConvert.DeserializeObject<Author>(data);
-        //        }
-        //    }
-
-        //    catch
-        //    {
-        //        Redirect("Error");
-
-        //    }
-        //    return View(author);
-        //}
-
-
-
-
         public async Task<IActionResult> Create(int id)
         {
             var token = ViewData["haga"];
             HttpClient client = _api.Initial();
-         
-
-            //Author SecurityID
-            //var authorr = await client.GetAsync($"api/Authors/{id}");
-            //var RestaurantsSelectList = (authorr, "Id", "Name");
-            //ViewBag.SecurityID = RestaurantsSelectList;
-
-
             return View();
-
         }
         [HttpPost]
         public async Task<IActionResult> Create(Author author)
         {
             var token = ViewData["haga"];
             HttpClient client = _api.Initial();
-           
-            //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token.ToString());
             HttpResponseMessage res = await client.PostAsJsonAsync($"api/Authors", author);
             if (res.IsSuccessStatusCode)
             {
@@ -147,7 +104,6 @@ namespace FrontEndNewsWebsite.Controllers
         {
             var token = ViewData["haga"];
             HttpClient client = _api.Initial();
-            //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token.ToString());
             HttpResponseMessage res = await client.PutAsJsonAsync<Author>("api/Authors/{id}", author);
 
             if (res.IsSuccessStatusCode)
@@ -159,7 +115,6 @@ namespace FrontEndNewsWebsite.Controllers
         }
         public async Task<ActionResult> Delete(int? id)
         {
-            var token = ViewData["haga"];
             Author author = new Author();
             HttpClient client = _api.Initial();
             HttpResponseMessage res = await client.GetAsync($"api/Authors/{id}");
@@ -170,12 +125,10 @@ namespace FrontEndNewsWebsite.Controllers
             }
             return View(author);
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            var token = ViewData["haga"];
             HttpClient Client = _api.Initial();
             HttpResponseMessage res = await Client.DeleteAsync($"api/Authors/{id}");
             if (res.IsSuccessStatusCode)
@@ -198,7 +151,6 @@ namespace FrontEndNewsWebsite.Controllers
             {
                 return View();
             }
-
         }
     }
 }

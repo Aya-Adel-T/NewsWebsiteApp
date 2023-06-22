@@ -1,95 +1,49 @@
 ﻿@model IEnumerable<NewsAPI.Models.Author>
-
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/_Layout.cshtml";
-
+    ViewData["Title"] = "Index";   
+    var authorized = ViewData["tokentalt"];
 }
-
-<br />
-<br />
-<br />
-<br />
-<br />
-<form action="/AuthorsFront/SortAuthorsbyName" method="get">
-    <div class="form-group text-center">
-        <h3> Click here to Sort Authors by Name </h3>
-        <input type="submit" class="btn btn-primary" />
+<br /><br /><br /><br /><br />
+@if (authorized != null)
+{
+    Layout = "~/Views/_Layout.cshtml";
+    <form action="/AuthorsFront/SortAuthorsbyName" method="get">
+        <div class="form-group text-center">
+            <h3> Click here to Sort Authors by Name </h3>
+            <input type="submit" class="btn btn-primary" />
+        </div>
+    </form>
+    <div class="container"> 
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
     </div>
-</form>
-
-
-<div class="container"> 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-</div>
-<section class="w3l-passion-mid-sec">
-    <div class="container">
+    <section class="w3l-passion-mid-sec">
         <div class="container">
-            <div class="row w3l-passion-mid-grids">
-                
-                <br />
+            <div class="container">
+                <div class="row w3l-passion-mid-grids">
 
-                @foreach (var item in Model)
-                {
+                    <br />
 
-                    <div style="background-color:oldlace;" class="col-lg-8 passion-grid-item-info  mt-lg-3 mt-5 ml-lg-5">
-                        <h2 class="title-subw3hny"> @Html.DisplayFor(modelItem => item.Name)</h2>
-                        <a class="btn btn-primary btn-style mt-lg-5 mt-4" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                        <a class="btn btn-primary btn-style mt-lg-5 mt-4" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                        <a class="btn btn-primary btn-style mt-lg-5 mt-4" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                        <br />
-                        <hr />
-                    </div>
-                }
+                    @foreach (var item in Model)
+                    {
 
+                        <div style="background-color:oldlace;" class="col-lg-8 passion-grid-item-info  mt-lg-3 mt-5 ml-lg-5">
+                            <h2 class="title-subw3hny"> @Html.DisplayFor(modelItem => item.Name)</h2>
+                            <a class="btn btn-primary btn-style mt-lg-5 mt-4" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                            <a class="btn btn-primary btn-style mt-lg-5 mt-4" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                            <a class="btn btn-primary btn-style mt-lg-5 mt-4" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            <br />
+                            <hr />
+                        </div>
+                    }
+
+                </div>
             </div>
         </div>
-    </div>
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- @*  <table class="table" style=" margin-top:100px;">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-      
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-      
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+    </section>
 }
-    </tbody>
-</table>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-*@
+else
+{
+    <h1> You are not allowed to be here </h1>
+}

@@ -3,19 +3,8 @@
 @{
     ViewData["Title"] = "SortByPublicationDate";
 }
-
-
-
-
-
-<!--//about-home-->
-<!--/w3l-passion-mid-sec-->
-<br />
-<br />
-<br />
-<br />
+<br /><br /><br /><br />
 <h1 style="text-align:center">Sort By Publication Date</h1>
-
 
 <section class="w3l-passion-mid-sec">
     <div class="container">
@@ -30,15 +19,11 @@
 
                         <h3 class="title-w3l mb-4">@Html.DisplayFor(modelItem => item.Title)</h3>
 
-                        <h2 class="mt-3 pr-lg-3">
-                            @Html.DisplayFor(modelItem => item.OurNews)
-                        </h2>
-                        @*<div class="col-lg-4 w3hny-passion-item">*@
                         <div class="passion-grid-item-pic mt-lg-3">
                             <img style="width:300px;height:100%" src="@Html.DisplayFor(modelItem => item.NewsImg)" alt="paayz">
 
                         </div>
-                        @*</div>*@
+                  
                         <h6 class="title-subw3hny">
                             @Html.DisplayFor(modelItem => item.PublicationDate)
                         </h6>

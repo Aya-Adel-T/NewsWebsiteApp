@@ -8,7 +8,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Aya - Fashion Category Bootstrap Responsive Template | Home :: W3layouts</title>
+    <title>Aya - News Website </title>
     <!-- google fonts -->
     <link href="//fonts.googleapis.com/css2?family=Spartan:wght@300;400;600;700&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="~/css/mycsstheme.css" />
@@ -17,7 +17,6 @@
 <body >
 
    
-
     <!--header-->
     <header id="site-header" class="fixed-top">
         <div class="container">
@@ -27,10 +26,6 @@
                         News<span class="logo-sub"> Website </span>
                     </a>
                 </h1>
-                <!-- if logo is image enable this
-                <a class="navbar-brand" href="#index.html">
-                    <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
-                </a> -->
                 <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
                         data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -43,14 +38,6 @@
                         <li class="nav-item active">
                             <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                     @*   <li class="nav-item">
-                            <a class="nav-link " asp-area="" asp-controller="AuthorsFront" asp-action="Index">Authors</a>
-
-                        </li>*@
-                      @*  <li class="nav-item">
-                            <a class="nav-link " asp-area="" asp-controller="NewsFront" asp-action="Index">All News</a>
-
-                        </li>*@
                         <li class="nav-item">
                             <a class="nav-link " asp-area="" asp-controller="Home" asp-action="About">About</a>
                         </li>
@@ -60,12 +47,7 @@
                           
                         </li>
                     </ul>
-                    <!--/search-right-->
-                  @*  <div class="search-right">
-                        <a href="#search" title="search"><span class="fa fa-search" aria-hidden="true"></span></a>
-                    </div>*@
-                    <!--//search-right-->
-                    <!--//search-right-->
+ 
                     <div class="top-quote mr-lg-3 mt-lg-0 mr-lg-4">
                         <a class="btn btn-style btn-white btn-primary" asp-area="" asp-controller="LoginFront" asp-action="Index">Login as an Admin</a>
 
@@ -73,37 +55,13 @@
                     </div>
 
                 </div>
-            
-
-                <!-- toggle switch for light and dark theme -->
-             @*   <div class="mobile-position">
-                    <nav class="navigation">
-                        <div class="theme-switch-wrapper">
-                            <label class="theme-switch" for="checkbox">
-                                <input type="checkbox" id="checkbox">
-                                <i class="gg-sun"></i>
-                                <i class="gg-moon"></i>
-
-                            </label>
-                        </div>
-                    </nav>
-                </div>
-*@
-
-                <!-- //toggle switch for light and dark theme -->
+  
             </nav>
         </div>
     </header>
     <!--/header-->
     
     @RenderBody()
-   @* <div class="container body-content">
-     
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>*@
 
     <!-- //testimonials -->
     <section class="w3l-footer-29-main" style="background-color:thistle">
@@ -119,11 +77,6 @@
                         <p class="pr-lg-5 mr-xl-4 mb-4">
                            Best News website in the world
                         </p>
-                     @*   <div class="top-quote mr-lg-3 mt-lg-0 mr-lg-4">
-                            <a class="btn btn-style btn-white btn-primary" asp-area="" asp-controller="LoginFront" asp-action="Index">Login as an Admin</a>
-                            <partial name="_LoginPartial" />
-
-                        </div>*@
                         <a asp-area="" asp-controller="LoginFront" asp-action="Index" class="btn btn-style btn-primary mt-2">Login as an Admin</a>
                     </div>
                     <div class="col-lg-4 footer-list-29 footer-3 mt-lg-0 mt-5 pr-lg-5">
@@ -200,11 +153,6 @@
         </script>
         <!-- //move top -->
     </section>
-
-
-
-
-
 
     <!-- Template JavaScript -->
  

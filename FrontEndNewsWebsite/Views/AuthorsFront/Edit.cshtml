@@ -1,15 +1,13 @@
 ﻿@model NewsAPI.Models.Author
-
 @{
     ViewData["Title"] = "Edit";
     Layout = "~/Views/_Layout.cshtml";
-
+    var authorized = ViewData["tokentalt"];
 }
-<br />
-<br />
-<br />
-<br />
-
+<br /><br /><br /><br />
+@*@if (authorized != null)
+{
+*@
 <hr />
 <div class="container" style=" display: flex;justify-content: center;">
     <div class="col-md-4">
@@ -22,15 +20,9 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                @*<label asp-for="SecurityID" class="control-label"></label>*@
                 <input type="hidden" asp-for="SecurityID" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-         @*   <div class="form-group">
-                <label asp-for="SecurityID" class="control-label"></label>
-                <h2 asp-for="SecurityID" class="form-control" asp-items="ViewBag.SecurityID"></h2>
-                <span asp-validation-for="SecurityID" class="text-danger"></span>
-            </div>*@
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
@@ -41,8 +33,9 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-
-@*@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+@*}
+else
+{
+    <h1> You are not allowed to be here </h1>
 }
 *@

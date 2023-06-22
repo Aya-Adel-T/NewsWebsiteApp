@@ -13,8 +13,7 @@ using System.Security.Cryptography.X509Certificates;
 namespace FrontEndNewsWebsite.Controllers
 {
     public class NewsFront : Controller
-    {
-       
+    {   
         APIClient _api = new APIClient();
         public async Task<IActionResult> Index()
         {
@@ -30,7 +29,6 @@ namespace FrontEndNewsWebsite.Controllers
             {
                 return View();
             }
-
         }
         [HttpGet]
         public async Task<IActionResult> Details(int id)
@@ -38,13 +36,13 @@ namespace FrontEndNewsWebsite.Controllers
             var token = TempData["Token"];
             News news = new News();
             HttpClient client = _api.Initial();
-            //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token.ToString());
+            var token1 = token.ToString();
+            //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
             HttpResponseMessage res = await client.GetAsync($"api/News/{id}");
             if (res.IsSuccessStatusCode)
             {
                 string data = res.Content.ReadAsStringAsync().Result;
-                news = JsonConvert.DeserializeObject<News>(data);
-                
+                news = JsonConvert.DeserializeObject<News>(data);           
             }
             return View(news);
         }
@@ -58,13 +56,11 @@ namespace FrontEndNewsWebsite.Controllers
 
             ViewBag.AuthorList = AuthorsSelectList;
             return View();
-
         }
         [HttpPost]
         public async Task<IActionResult> Create(News news)
         {
-            var token = TempData["Token"];
-
+            var token = ViewData["Token"];
             HttpClient client = _api.Initial();
             //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token.ToString());
             HttpResponseMessage res = await client.PostAsJsonAsync($"api/News", news);
@@ -119,7 +115,6 @@ namespace FrontEndNewsWebsite.Controllers
             }
             return View(news);
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
@@ -133,7 +128,6 @@ namespace FrontEndNewsWebsite.Controllers
             {
                 return RedirectToAction("Index");
             }
-
             return View();
         }
         [HttpPost]
@@ -149,7 +143,6 @@ namespace FrontEndNewsWebsite.Controllers
             {
                 return View();
             }
-
         }
         [HttpGet]
         public async Task<IActionResult> SortByPublicationDate()
@@ -165,7 +158,6 @@ namespace FrontEndNewsWebsite.Controllers
                 return View();
             }
         }
-
         [HttpPost]
         public async Task<IActionResult> addNewsImage(IFormFile file, string Title)
         {
@@ -188,8 +180,7 @@ namespace FrontEndNewsWebsite.Controllers
                         return RedirectToAction("Index");
                     }
                     return View();
-                }
-       
+                }   
         }
     }
 }
