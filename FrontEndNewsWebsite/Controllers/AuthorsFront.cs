@@ -11,9 +11,6 @@ namespace FrontEndNewsWebsite.Controllers
 {
     public class AuthorsFront : Controller
     {
-
-        //System.Object token= new Object();
-     
         APIClient _api = new APIClient();
 
         public async Task<IActionResult> Index()
@@ -54,10 +51,7 @@ namespace FrontEndNewsWebsite.Controllers
                     author = JsonConvert.DeserializeObject<Author>(data);
                 }
                 return View(author);
-            }
-            
-           
-          
+            }  
             catch
             {
                 Redirect("Error");
