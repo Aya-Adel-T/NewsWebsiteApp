@@ -20,7 +20,7 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg stroke px-0 pt-lg-0 " >
                 <h1>
-                    <a class="navbar-brand" asp-controller="LoginFront" asp-action="Index">
+                    <a class="navbar-brand" asp-controller="LoginFront" asp-action="AdminPanel">
                         News<span class="logo-sub"> Website </span>
                     </a>
                 </h1>
@@ -51,7 +51,7 @@
 
                     <div class="top-quote mr-lg-3 mt-lg-0 mr-lg-4">
 
-                        <p class="" asp-area="" asp-controller="LoginFront" asp-action="Index">Welcome Admin</p>
+                        <p class="" asp-area="" asp-controller="LoginFront" asp-action="Index">Welcome @User.Identity.Name</p>
 
                     </div>
            

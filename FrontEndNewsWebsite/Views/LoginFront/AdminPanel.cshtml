@@ -2,14 +2,11 @@
 @inject IAuthorizationService AuthorizationService
 @{
     Layout = "~/Views/_Layout.cshtml";
-    var d = ViewData["tokenbag"];
-    TempData["tokentani"] = d;
+
 }
 <br /><br /><br /><br /><br />
-@if (d!= null)
-{
-<h1 style="text-align:center">Welcome to Admin panel</h1>
 
+<h1 style="text-align:center">Welcome to Admin panel</h1>
 <section class="w3l-passion-mid-sec">
     <div class="container">
         <div class="container">
@@ -17,7 +14,7 @@
 
 
                 <div class="card " style="width: 25rem; margin-left:80px;margin-top:20px">
-                    <img class="card-img-top" src="images/author.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="~/images/author.jpg" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Authors</h5>
                         <p class="card-text"> Here you can control all the authors on the website </p>
@@ -26,7 +23,7 @@
                 </div>
 
                 <div class="card" style="width: 25rem; margin-right:50px; margin-left:80px;margin-top:20px;">
-                    <img class="card-img-top" src="images/news.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="~/images/news.jpg" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">News</h5>
                         <p class="card-text"> Here you can control all the News on the website </p>
@@ -37,6 +34,3 @@
         </div>
     </div>
 </section>
-}else{
-    <h1> You are not allowed to be here </h1>
-}

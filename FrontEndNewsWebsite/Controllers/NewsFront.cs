@@ -1,9 +1,11 @@
 ﻿using FeliveryAdminPanel.Helpers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NewsAPI.Models;
 using Newtonsoft.Json;
 using NuGet.Common;
+using System.Data;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
@@ -12,6 +14,8 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace FrontEndNewsWebsite.Controllers
 {
+    [Authorize(Roles = "Admin")]
+
     public class NewsFront : Controller
     {   
         APIClient _api = new APIClient();

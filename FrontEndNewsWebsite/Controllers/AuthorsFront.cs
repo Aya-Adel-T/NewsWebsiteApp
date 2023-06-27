@@ -1,14 +1,18 @@
 ﻿using Azure.Core;
 using FeliveryAdminPanel.Helpers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NewsAPI.Models;
 using Newtonsoft.Json;
+using System.Data;
 using System.Linq;
 using System.Security.Claims;
 
 namespace FrontEndNewsWebsite.Controllers
 {
+    [Authorize(Roles = "Admin")]
+
     public class AuthorsFront : Controller
     {
         APIClient _api = new APIClient();
@@ -16,8 +20,6 @@ namespace FrontEndNewsWebsite.Controllers
         public async Task<IActionResult> Index()
         {
            var  token = TempData["Token"];
-            var token1 = TempData["tokentani"];
-            ViewData["tokentalt"] = token1;
             HttpClient Client = _api.Initial();
             try
             {

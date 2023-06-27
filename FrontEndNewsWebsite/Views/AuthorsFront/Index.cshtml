@@ -1,12 +1,11 @@
 ﻿@model IEnumerable<NewsAPI.Models.Author>
 @{
-    ViewData["Title"] = "Index";   
-    var authorized = ViewData["tokentalt"];
+    ViewData["Title"] = "Index"; 
+    Layout = "~/Views/_Layout.cshtml";
+
 }
 <br /><br /><br /><br /><br />
-@if (authorized != null)
-{
-    Layout = "~/Views/_Layout.cshtml";
+
     <form action="/AuthorsFront/SortAuthorsbyName" method="get">
         <div class="form-group text-center">
             <h3> Click here to Sort Authors by Name </h3>
@@ -42,8 +41,3 @@
             </div>
         </div>
     </section>
-}
-else
-{
-    <h1> You are not allowed to be here </h1>
-}

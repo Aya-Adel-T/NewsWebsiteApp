@@ -1,6 +1,8 @@
 //using Microsoft.AspNetCore.Identity;
 //using Microsoft.EntityFrameworkCore;
 //using NewsWebsiteAPI.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
+
 var builder = WebApplication.CreateBuilder(args);
 ////var connectionString = builder.Configuration.GetConnectionString("ElDbContextConnection") ?? throw new InvalidOperationException("Connection string 'ElDbContextConnection' not found.");
 
@@ -10,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 
 var app = builder.Build();
 
